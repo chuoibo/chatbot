@@ -1,0 +1,1 @@
+CHATBOT_CONFIG_FILE = 'backend/src/config/files/chatbot.yaml'
