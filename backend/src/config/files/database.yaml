@@ -1,0 +1,5 @@
+database: 
+  hostname: mongodb
+  port: 27017
+  database_name: chatbot_database
+  collection_name: chatbot_collection
