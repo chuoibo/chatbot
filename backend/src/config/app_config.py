@@ -32,6 +32,7 @@ class ChatbotConfig:
     cache = chatbot_file['cache']
 
     chatbot_model = chatbot['model']
+    embedding_model = chatbot['embedding_model']
     chatbot_temperature = chatbot['temperature']
     chatbot_top_p = chatbot['top_p']
     chatbot_max_tokens = chatbot['max_tokens']

@@ -11,6 +11,7 @@ def get_client(api_key):
         api_key=api_key
     )
 
+
 def get_chat_response(client, messages):
     logging.info('Getting chat response ...')
     input_messages = []
@@ -26,3 +27,9 @@ def get_chat_response(client, messages):
     ).choices[0].message.content
 
     return response
+
+
+def get_embedding(client, text):
+    text = text.replace("\n", " ")
+    embeddings = client.embeddings.create(input=[text], model=cc.embedding_model).data[0].embedding
+    return embeddings

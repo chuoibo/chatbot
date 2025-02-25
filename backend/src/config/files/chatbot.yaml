@@ -1,5 +1,6 @@
 chatbot:
   model: gpt-4o-mini
+  embedding_model: text-embedding-3-small
   temperature: 0.0
   top_p: 0.8
   max_tokens: 2000
@@ -8,3 +9,4 @@ cache:
   ttl_seconds: 3600
   length_string: 16
   max_length_string: 32
+
