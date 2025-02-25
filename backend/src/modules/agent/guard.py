@@ -4,13 +4,13 @@ import logging
 from copy import deepcopy
 
 from backend.src.utils.response import get_chat_response, get_client
-from backend.src.config.app_config import Config as cc
+from backend.src.config.app_config import Config as cfg
 
 
 class GuardAgent:
     def __init__(self):
         self.client = get_client(
-            api_key=cc.OPENAI_API_KEY,
+            api_key=cfg.OPENAI_API_KEY,
         )
 
         logging.info('Initialize guard agent ...')

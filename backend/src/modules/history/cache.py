@@ -3,14 +3,14 @@ import logging
 from redis import Redis
 from backend.src.utils.common import generate_request_id
 from backend.src.config.app_config import (ChatbotConfig as cbc,
-                                           Config as cc)
+                                           Config as cfg)
 
 
 class Cache:
     def __init__(self, bot_id, user_id):
         self.bot_id = bot_id
         self.user_id = user_id
-        self.redis_client = Redis.from_url(url=cc.REDIS_URL)
+        self.redis_client = Redis.from_url(url=cfg.REDIS_URL)
 
 
     def get_conversation_key(self):

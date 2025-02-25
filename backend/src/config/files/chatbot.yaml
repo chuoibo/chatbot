@@ -1,6 +1,5 @@
 chatbot:
   model: gpt-4o-mini
-  embedding_model: text-embedding-3-small
   temperature: 0.0
   top_p: 0.8
   max_tokens: 2000
@@ -10,3 +9,10 @@ cache:
   length_string: 16
   max_length_string: 32
 
+retrieval:
+  embedding_model: text-embedding-3-small
+  rerank_model: BAAI/bge-reranker-base
+  vector_database_index_name: chatbot1
+  vector_database_name_space: ns1
+  use_fp16: True
+  rerank_top_k: 10

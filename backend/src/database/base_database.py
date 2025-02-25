@@ -4,15 +4,15 @@ import os
 import pymongo.errors
 
 from src.utils.logger import logging
-from src.config.app_config import Config as cc
+from src.config.app_config import Config as cfg
 
 
 class BaseDatabase(object):
     def __init__(self, config):
         self.host_name = config['hostname']
         self.port = config['port']
-        self.user = cc.DATABASE_USER
-        self.password = cc.DATABASE_PASSWORD
+        self.user = cfg.DATABASE_USER
+        self.password = cfg.DATABASE_PASSWORD
         if (self.user == None or self.password == None) or (self.user == '' or self.password == ''):
             self.url = f"mongodb://{self.host_name}:{self.port}"
         else:

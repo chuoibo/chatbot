@@ -30,9 +30,9 @@ class ChatbotConfig:
     chatbot_file = read_yaml_file(CHATBOT_CONFIG_FILE)
     chatbot = chatbot_file['chatbot']
     cache = chatbot_file['cache']
+    retrieval = chatbot_file['retrieval']
 
     chatbot_model = chatbot['model']
-    embedding_model = chatbot['embedding_model']
     chatbot_temperature = chatbot['temperature']
     chatbot_top_p = chatbot['top_p']
     chatbot_max_tokens = chatbot['max_tokens']
@@ -40,6 +40,13 @@ class ChatbotConfig:
     ttl_seconds = cache['ttl_seconds']
     length_string = cache['length_string']
     max_length_string = cache['max_length_string']
+
+    embedding_model = retrieval['embedding_model']
+    rerank_model = retrieval['rerank_model']
+    vector_database_index_name = retrieval['vector_database_index_name']
+    vector_database_name_space = retrieval['vector_database_name_space']
+    use_fp16 = retrieval['use_fp16']
+    rerank_top_k = retrieval['rerank_top_k']
 
 
 class DatabaseConfig:

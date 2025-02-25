@@ -1,20 +1,20 @@
 from celery import Celery
 
-from src.config.app_config import Config as cc
+from src.config.app_config import Config as cfg
 
 
 def get_celery_app(name):
     app = Celery(
         name,
-        broker=cc.MQ_URL,  
-        backend=cc.REDIS_URL  
+        broker=cfg.MQ_URL,  
+        backend=cfg.REDIS_URL  
     )
 
 
     app.conf.update(
         task_serializer='json',
         result_serializer='json',
-        accept_content=['json'],
+        acfgept_content=['json'],
         timezone='Asia/Ho_Chi_Minh', 
         enable_utc=True
     )
