@@ -33,3 +33,14 @@ def get_embedding(client, text):
     text = text.replace("\n", " ")
     embeddings = client.embeddings.create(input=[text], model=cc.embedding_model).data[0].embedding
     return embeddings
+
+
+def get_conversation_text(conversations):
+    conversation_text = ""
+    for conversation in conversations:
+        logging.info(f"Get conversation: {conversation}")
+        role = conversation.get("role", "user")
+        content = conversation.get("content", "")
+        conversation_text += f"{role}: {content}"
+    
+    return conversation_text
