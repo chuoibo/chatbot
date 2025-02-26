@@ -28,7 +28,7 @@ class Reranker:
         list_scores = self.calculate_scores(pairs=pairs)
         doc_scores = list(zip(docs, list_scores))
         sorted_doc_scores = sorted(doc_scores, key=lambda x: x[1], reverse=True)
-        top_k_documents = [doc for doc, score in sorted_doc_scores[:cc.rerank_top_k]]
+        top_k_documents = [doc for doc, _ in sorted_doc_scores[:cc.rerank_top_k]]
         
         logging.info(f'Finish rerank model with top_docs {top_k_documents}')
         return top_k_documents

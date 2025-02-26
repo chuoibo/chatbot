@@ -43,8 +43,9 @@ class ChatbotConfig:
 
     embedding_model = retrieval['embedding_model']
     rerank_model = retrieval['rerank_model']
-    vector_database_index_name = retrieval['vector_database_index_name']
     vector_database_name_space = retrieval['vector_database_name_space']
+    vector_database_index_name = retrieval['vector_database_index_name']
+    retrieval_top_k = retrieval['retrieval_top_k']
     use_fp16 = retrieval['use_fp16']
     rerank_top_k = retrieval['rerank_top_k']
 

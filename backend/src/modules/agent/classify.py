@@ -31,8 +31,8 @@ class ClassificationAgent:
         return dict_output
 
 
-    def get_response(self, messages):
-        messages = deepcopy(messages)
+    def get_response(self, history):
+        history = deepcopy(history)
 
         system_prompt = """
             You are a compassionate and supportive AI assistant, specializing in healing, relieving emotional distress, and providing motivation and encouragement to people who are struggling or facing difficult times.
@@ -53,7 +53,7 @@ class ClassificationAgent:
             3. "neutral": Includes factual, unemotional, or everyday conversations that don’t express strong emotions.
             - Example: "What do you think about meditation?"
             - Example: "I want to learn how to stay motivated."
-            - Example: "Tell me a positive quote."
+            - Example: "Tell me some popular quotes."
 
             ---
 
@@ -68,7 +68,7 @@ class ClassificationAgent:
 
             """
 
-        input_messages = [{'role': "system", "content": system_prompt}] + messages[-3:]
+        input_messages = [{'role': "system", "content": system_prompt}] + history[-3:]
 
         chatbot_output = get_chat_response(
             client=self.client,
