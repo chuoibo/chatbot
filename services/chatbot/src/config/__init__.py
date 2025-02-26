@@ -1,2 +1,2 @@
-CHATBOT_CONFIG_FILE = 'backend/chatbot/config/files/chatbot.yaml'
-DATABASE_CONFIG_FILE = 'backend/chatbot/config/files/database.yaml'
+CHATBOT_CONFIG_FILE = 'src/config/files/chatbot.yaml'
+DATABASE_CONFIG_FILE = 'src/config/files/database.yaml'

@@ -1,5 +1,7 @@
 import pymongo
-import logging
+# import logging
+from src.utils.logger import logging
+
 
 import pymongo.errors
 
@@ -22,7 +24,7 @@ class BaseDatabase(object):
 
     def initialize(self):
         try:
-            self.client = pymongo.MongoClient(self.url)
+            self.client = pymongo.MongoClient('mongodb://USER:PASSWORD@localhost:27017/')
             logging.info("Connected to database")
         except pymongo.errors.ServerSelectionTimeoutError as e:
             logging.error(f"Error connecting to database: {e}")

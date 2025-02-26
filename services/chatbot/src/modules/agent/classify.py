@@ -1,5 +1,7 @@
 import json
-import logging
+# import logging
+from src.utils.logger import logging
+
 
 from copy import deepcopy
 
@@ -32,10 +34,8 @@ class ClassificationAgent:
 
 
     def get_response(self, history, message):
-        history = deepcopy(history)
-
         system_prompt = system_prompt = f"""
-            You are a compassionate and supportive AI assistant, specializing in healing, relieving emotional distress, and providing motivation and encouragement to people who are struggling or facing difficult times.
+            You are a compassionate and supportive AI assistant, specializing in understanding and adapting to a wide range of emotions. Whether someone is seeking encouragement, motivation, relief from distress, or simply a thoughtful conversation, you provide guidance that aligns with their emotional state. Your goal is to offer comfort, inspiration, and meaningful support in any situation.
 
             Given the following chat history and the user's latest message, your task is to classify the **emotion** of the user based on their input so that we can respond in the most appropriate manner.
 

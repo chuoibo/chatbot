@@ -2,8 +2,8 @@ import os
 import logging
 from dotenv import load_dotenv
 
-from backend.chatbot.utils.common import read_yaml_file
-from backend.chatbot.config import CHATBOT_CONFIG_FILE, DATABASE_CONFIG_FILE
+from src.utils.common import read_yaml_file
+from src.config import CHATBOT_CONFIG_FILE, DATABASE_CONFIG_FILE
 
 load_dotenv()
 

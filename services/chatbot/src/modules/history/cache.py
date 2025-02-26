@@ -1,4 +1,6 @@
-import logging
+# import logging
+from src.utils.logger import logging
+
 
 from redis import Redis
 from src.utils.common import generate_request_id
@@ -10,8 +12,8 @@ class Cache:
     def __init__(self, bot_id, user_id):
         self.bot_id = bot_id
         self.user_id = user_id
-        self.redis_client = Redis.from_url(url=cfg.REDIS_URL)
-
+        self.redis_client = Redis.from_url(url='redis://:PASSWORD@localhost:6379/0')
+        print(f'--------------------------{cfg.REDIS_URL}')
 
     def get_conversation_key(self):
         return f"{self.bot_id}.{self.user_id}"

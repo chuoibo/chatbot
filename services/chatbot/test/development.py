@@ -1,5 +1,6 @@
 import logging
 
+from src.utils.logger import logging
 from src.modules.history.model import Conversation
 from src.modules import GuardAgent, ClassificationAgent
 
@@ -35,7 +36,8 @@ def main():
             message=prompt
         )
 
-        print(f'Guard Agent Response: {guard_agent_response}')
+        logging.info(f'---------------------------Guard Agent Response: {guard_agent_response["content"]}--------------------------------')
+        
         if guard_agent_response['memory']['guard_decision'] == 'not_allowed':
             continue
 
@@ -44,7 +46,7 @@ def main():
             message=prompt
             )
         
-        print(f'Classification Response: {classification_agent_response}')
+        logging.info(f'-----------------Classification Response: {classification_agent_response["memory"]["classification_agent"]}--------------------------------')
         # chosen_agent = classification_agent_response['memory']['classification_agent']
 
         # logging.info(f"Chosen Agent: {chosen_agent}")

@@ -1,22 +1,22 @@
 services:
-  chatbot:
-    build:
-      context: ./services/chatbot
-      dockerfile: Dockerfile
-    container_name: chatbot
-    command: sh -c "celery -A src.celery_tasks.tasks worker --loglevel=info --concurrency=1 -E --logfile=/chatbot/logs/celery.log"
-    environment:
-      - MQ_URL=${MQ_URL}
-      - REDIS_URL=${REDIS_URL}
-      - RMQ_USER=${RMQ_USER}
-      - RMQ_PWD=${RMQ_PWD}
-      - REDIS_PWD=${REDIS_PWD}
-    volumes:
-      - ./services/chatbot/src:/chatbot/src
-      - ./logs:/chatbot/logs
-    networks:
-      - vnet
-    privileged: true
+  # chatbot:
+  #   build:
+  #     context: ./services/chatbot
+  #     dockerfile: Dockerfile
+  #   container_name: chatbot
+  #   command: sh -c "celery -A src.celery_tasks.tasks worker --loglevel=info --concurrency=1 -E --logfile=/chatbot/logs/celery.log"
+  #   environment:
+  #     - MQ_URL=${MQ_URL}
+  #     - REDIS_URL=${REDIS_URL}
+  #     - RMQ_USER=${RMQ_USER}
+  #     - RMQ_PWD=${RMQ_PWD}
+  #     - REDIS_PWD=${REDIS_PWD}
+  #   volumes:
+  #     - ./services/chatbot/src:/chatbot/src
+  #     - ./logs:/chatbot/logs
+  #   networks:
+  #     - vnet
+  #   privileged: true
 
   mongodb:
     image: mongo:6.0
@@ -29,16 +29,16 @@ services:
       - vnet
 
 
-  rabbitmq:
-    image: rabbitmq:3.12.13
-    ports:
-      - 5672:5672
-      - 15672:15672
-    environment:
-      - RABBITMQ_DEFAULT_USER=${RMQ_USER}
-      - RABBITMQ_DEFAULT_PASS=${RMQ_PWD}
-    networks:
-      - vnet
+  # rabbitmq:
+  #   image: rabbitmq:3.12.13
+  #   ports:
+  #     - 5672:5672
+  #     - 15672:15672
+  #   environment:
+  #     - RABBITMQ_DEFAULT_USER=${RMQ_USER}
+  #     - RABBITMQ_DEFAULT_PASS=${RMQ_PWD}
+  #   networks:
+  #     - vnet
   
   redis:
     image: redis:7.2-rc-bullseye
@@ -50,17 +50,17 @@ services:
       - vnet
 
 
-  flower:
-    image: mher/flower:2.0
-    environment:
-      CELERY_BROKER_URL: ${MQ_URL}
-      FLOWER_PORT: 5555
-    ports:
-      - 5555:5555
-    networks:
-      - vnet
-    depends_on:
-      - rabbitmq
+  # flower:
+  #   image: mher/flower:2.0
+  #   environment:
+  #     CELERY_BROKER_URL: ${MQ_URL}
+  #     FLOWER_PORT: 5555
+  #   ports:
+  #     - 5555:5555
+  #   networks:
+  #     - vnet
+  #   depends_on:
+  #     - rabbitmq
 
 
 networks:

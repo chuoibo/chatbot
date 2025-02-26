@@ -1,4 +1,6 @@
-import logging
+# import logging
+from src.utils.logger import logging
+
 
 from openai import OpenAI
 
