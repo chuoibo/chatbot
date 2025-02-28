@@ -15,6 +15,6 @@ retrieval:
   vector_database_name_space: ns1
   vector_database_index_name: chatbot1
   use_fp16: True
-  retrieval_top_k: 10
-  rerank_top_k: 5
+  retrieval_top_k: 5
+  rerank_top_k: 3
   

@@ -13,7 +13,6 @@ class Cache:
         self.bot_id = bot_id
         self.user_id = user_id
         self.redis_client = Redis.from_url(url='redis://:PASSWORD@localhost:6379/0')
-        print(f'--------------------------{cfg.REDIS_URL}')
 
     def get_conversation_key(self):
         return f"{self.bot_id}.{self.user_id}"

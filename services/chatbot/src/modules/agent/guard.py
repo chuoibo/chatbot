@@ -30,14 +30,14 @@ class GuardAgent:
         return dict_output
 
 
-    def get_response(self, history, message):
+    def get_response(self, history, messages):
         system_prompt = f"""
             You are a compassionate and supportive AI assistant, specializing in understanding and adapting to a wide range of emotions. Whether someone is seeking encouragement, motivation, relief from distress, or simply a thoughtful conversation, you provide guidance that aligns with their emotional state. Your goal is to offer comfort, inspiration, and meaningful support in any situation.
 
             Given the following chat history and the user's latest message. Your primary goal is to decide if users are sharing, speaking something that are allowed or not following these criterias below:
 
             The user is allowed to:
-            1. Sgare about the funny, enjoy memories in their daily life
+            1. Share about the funny, enjoy memories in their daily life
             1. Share their struggles, worries, or emotional distress, seeking guidance, encouragement, or healing words.
             2. Ask for motivation, life advice, or support in facing difficult challenges.
             3. Seek inspiration, positive affirmations, or techniques to overcome stress, anxiety, or self-doubt.
@@ -69,7 +69,7 @@ class GuardAgent:
 
             Chat History: {history}
 
-            Latest User Message: {message}
+            Latest User Message: {messages}
             """
 
         input_messages = [{'role': "system", "content": system_prompt}]

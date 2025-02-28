@@ -1,6 +1,5 @@
-import logging
 
-class NormalAgent:
+class SurpriseAgent:
     def __init__(self):
         pass
 

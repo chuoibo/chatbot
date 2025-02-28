@@ -43,7 +43,7 @@ class SemanticSearch:
 
         retrieved_docs = []
         for match in results['matches']:
-            retrieved_docs.append(match['metadata']['text'])
+            retrieved_docs.append(match['metadata']['story'])
         
         if not retrieved_docs:
             return []

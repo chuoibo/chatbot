@@ -1,10 +1,12 @@
 # import logging
-from src.utils.logger import logging
+from copy import deepcopy
 
+from src.utils.logger import logging
 
 from openai import OpenAI
 
 from src.config.app_config import ChatbotConfig as cc
+from src.modules.history.model import Conversation
 
 
 def get_client(api_key):
@@ -46,3 +48,31 @@ def get_conversation_text(conversations):
         conversation_text += f"{role}: {content}"
     
     return conversation_text
+
+
+def get_user_intent(client, history, message):
+    logging.info('Getting user intent ...')
+    history = deepcopy(history)
+
+    conversation_messages = get_conversation_text(history)
+    user_prompt = f"""
+        Given following historical conversation and the latest message, rephrase the follow up message to a standalone message.
+        Chat History:
+        {conversation_messages}
+
+        Latest Message: {message}
+
+        Answer:
+    """
+
+    openai_messages = [
+        {"role": "system", "content": "You are an amazing virtual assistant"},
+        {"role": "user", "content": user_prompt}
+    ]
+
+    chatbot_output = get_chat_response(
+        client=client,
+        messages=openai_messages
+    )
+
+    return chatbot_output
