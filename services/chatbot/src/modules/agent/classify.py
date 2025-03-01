@@ -38,9 +38,8 @@ class ClassificationAgent:
 
             Step 1: Determine if the User's Input is vague
             - If the user's message is vague (lacks specific details) or unclear which you cannot identify the details in their story or classify the insights behind it. So we must provide a follow-up question to encourage them to share more.
-                - E.g: I am so sad
-                - E.g: I don't know what to do 
-                ...
+            - E.g: I am so sad
+            - E.g: I don't know what to do 
 
             - If the user's message is not vague (contains specific details), enough insights or events in the provided context. We move to the next step.
 
@@ -84,7 +83,7 @@ class ClassificationAgent:
                             }}
                         }}
                     ],
-                    "message": Leave it empty
+                    "message": If user's query is classified as vague, place the follow-up question here. Else leave it empty.
                 }}
 
             Chat History: {history}
