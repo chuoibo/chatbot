@@ -22,7 +22,7 @@ class SemanticSearch:
 
         self.pinecone_index = self.vector_database.Index(cc.vector_database_index_name)
 
-        self.rerank = Reranker()
+        self.reranker = Reranker()
 
         logging.info('Initialize Semantic Search ...')
 
@@ -30,7 +30,7 @@ class SemanticSearch:
     def retrieve_relevant_chunks(self, query):
         query_embedding = get_embedding(
             client=self.client,
-            query=query
+            text=query
         )
 
         results = self.pinecone_index.query(
@@ -48,7 +48,7 @@ class SemanticSearch:
         if not retrieved_docs:
             return []
         
-        reranked_docs = self.rerank(query, retrieved_docs)
+        reranked_docs = self.reranker.rerank(query, retrieved_docs)
         final_docs = [Document(text=doc) for doc in reranked_docs]
 
         logging.info(f'Finish retrieveing relevant documents {final_docs} ...')

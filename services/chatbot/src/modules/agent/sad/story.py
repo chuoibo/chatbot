@@ -7,7 +7,7 @@ from src.utils.response import get_chat_response, get_client, get_user_intent
 from src.config.app_config import Config as cfg
 
 
-class SadAgent:
+class StoryAgent:
     def __init__(self):
         self.client = get_client(
             api_key=cfg.OPENAI_API_KEY
@@ -32,16 +32,15 @@ class SadAgent:
 
     def get_response(self, history, messages):
         messages = deepcopy(messages)
-        user_message = messages[-1]["content"]
 
         relevant_chunks = self.semantic_search.retrieve_relevant_chunks(
-            query=user_message
+            query=messages
         )
 
         user_intent = get_user_intent(
             client=self.client,
             history=history,
-            message=user_message
+            message=messages
         )
         
         prompt = f"""

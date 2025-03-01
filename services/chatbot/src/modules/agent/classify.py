@@ -50,9 +50,13 @@ class ClassificationAgent:
             Be more flexible with the follow-up questions generation
 
             If the message is not vague:
-            - Sad: Decide whether the user needs to confide and have a deep conversation ("deep_talk") or if they would benefit from a motivational or healing story ("story").
-            - Happy, Surprise, or Neutral: Engage in normal, lighthearted chitchat.
-            - Response Format (Strict JSON)
+            1. Sad: If the user's message expresses sadness, frustration, fear, or distress, determine the best way to support them:
+                - If the user seems to need emotional release or someone to confide in, guide the conversation toward a deep discussion ("deep_talk").
+                - If the user seems to need comfort, encouragement, or inspiration rather than an in-depth conversation, provide a motivational or healing story ("story").
+
+            2. Happy, Surprise, or Neutral: Engage in normal, lighthearted chitchat.
+            
+            3. Response Format (Strict JSON)
             
             ---
             Response Format (Strict JSON)
@@ -76,7 +80,7 @@ class ClassificationAgent:
                             }}
                         }}
                     ],
-                    "message": Leave it empty here
+                    "message": Leave it empty
                 }}
 
             Chat History: {history}
