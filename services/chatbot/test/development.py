@@ -82,19 +82,18 @@ def main():
                 else:
                     pass
         
-        # manage_conversation.update_chat_conversation(
-        #     bot_id='bot1',
-        #     user_id='kiet',
-        #     message=response
-        # )
+        manage_conversation.update_chat_conversation(
+            bot_id='bot1',
+            user_id='kiet',
+            message=response
+        )
 
-        # logging.info(f'role: assistant, content: {response}')
+        logging.info(f'role: assistant, content: {response}')
                     
 
         # agent = agent_dict[chosen_agent]
 
         # response = agent.get_response(history=history, messages=prompt)
-        logging.info(f'Agent Response: {response}')
 
 if __name__ == "__main__":
     main()

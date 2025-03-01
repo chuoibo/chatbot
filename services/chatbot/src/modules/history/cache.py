@@ -29,6 +29,7 @@ class Cache:
                 logging.info('Generate new key for this conversation !')
                 conversation_id = generate_request_id(length=cbc.length_string,
                                                       max_length=cbc.max_length_string)
+                self.redis_client.set(key, conversation_id, cbc.ttl_seconds)
                 return conversation_id
 
         except Exception as e:

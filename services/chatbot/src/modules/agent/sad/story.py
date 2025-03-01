@@ -23,7 +23,7 @@ class StoryAgent:
             "role": "assistant",
             "content": output,
             "memory": {
-                "agent": "sad_agent"
+                "agent": "story_agent"
             }
         }
 
@@ -52,7 +52,8 @@ class StoryAgent:
         
         Your task:
         - Carefully select the most relevant story related to their situation from the retrieved options.
-        - Retell this story in a **gentle, comforting, and immersive way** that helps the user feel understood and supported.
+        - Doing a detailed summary for the chosen story and deliver it in a short and concise way but still keep the main motivated message of the story.
+        - Retell this summary version in a **gentle, comforting, and immersive way** that helps the user feel understood and supported.
         - Make sure your storytelling inspires **hope, resilience, and inner strength** rather than simply giving logical advice.
         - Adapt the tone to be **warm, encouraging, and emotionally uplifting**.
 
@@ -61,6 +62,10 @@ class StoryAgent:
 
         **Retrieved Healing Stories (Top-k Relevant Passages):**
         {relevant_chunks}
+
+
+        NOTE: Before you start telling the story, include an introductory sentence that aligns with the user's situation. Prevent from going straight forward to the story-telling, you must make a connection.
+        - E.g: Everything will be okay. Listen, I once heard a story like this: ... (then start telling the story).
 
         **Your Response (a deeply comforting, story-driven message that resonates with the user’s feelings and encourages them to overcome their struggles):**
         """

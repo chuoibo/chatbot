@@ -36,9 +36,13 @@ class ClassificationAgent:
 
             Your task is to analyze from the user's latest message and history and determine their intention and emotional state. Based on this, you will decide how to respond in the most appropriate and supportive way.
 
-            Step 1: Determine if the User's Input is Vague
-            - If the user's message is vague (lacks specific details), classify the emotion behind it and provide a follow-up question to encourage them to share more.
-            - If the user's message is not vague (contains specific details), classify the emotion and decide the next step in the conversation.
+            Step 1: Determine if the User's Input is vague
+            - If the user's message is vague (lacks specific details) or unclear which you cannot identify the details in their story or classify the insights behind it. So we must provide a follow-up question to encourage them to share more.
+                - E.g: I am so sad
+                - E.g: I don't know what to do 
+                ...
+
+            - If the user's message is not vague (contains specific details), enough insights or events in the provided context. We move to the next step.
 
             Step 2: Classify the Emotion and Decide the Next Move
             If the message is vague:

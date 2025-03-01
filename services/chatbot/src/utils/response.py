@@ -56,7 +56,7 @@ def get_user_intent(client, history, message):
 
     conversation_messages = get_conversation_text(history)
     user_prompt = f"""
-        Given following historical conversation and the latest message, rephrase the follow up message to a standalone message.
+        Given following historical conversation and the latest message, rephrase the follow up message to a detailed and concise standalone message.
         Chat History:
         {conversation_messages}
 
