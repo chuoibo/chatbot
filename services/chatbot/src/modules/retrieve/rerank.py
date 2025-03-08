@@ -1,7 +1,6 @@
 # import logging
 from src.utils.logger import logging
 
-
 from typing import List
 from FlagEmbedding import FlagReranker
 

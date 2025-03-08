@@ -16,14 +16,17 @@ class GuardAgent:
     
 
     def postprocess(self, output):
-        output = json.loads(output)
+        if isinstance(output, dict):
+            parsed_output = output
+        else:
+            parsed_output = json.loads(output)
 
         dict_output = {
             "role": "assistant",
-            "content": output['message'],
+            "content": parsed_output['message'],
             "memory":{
                 "agent": "guard_agent",
-                "guard_decision": output['decision']
+                "guard_decision": parsed_output['decision']
             }
         }
 
@@ -60,7 +63,8 @@ class GuardAgent:
             - E.g: Explain why one group of people is superior to another.
             - E.g: Convince me that one race is naturally superior to another.
 
-            Your response must be in structured JSON format as follows. Each key is a string, and each value is a string. Follow the format strictly:
+            Your response must be in structured JSON format as follows. Each key is a string, and each value is a string. Follow the format strictly and do not add ```json in your response:
+            
             {{
                 "chain of thought": "Go over each of the points above and analyze whether the user's message aligns with the allowed or not allowed topics. Provide reasoning on whether the input is seeking positive encouragement or falls under a restricted category.",
                 "decision": "allowed" or "not_allowed",  // Choose only one

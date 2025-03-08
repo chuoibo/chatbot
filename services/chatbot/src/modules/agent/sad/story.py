@@ -1,4 +1,5 @@
 import logging
+import json
 
 from copy import deepcopy
 
@@ -19,6 +20,7 @@ class StoryAgent:
 
     
     def postprocess(self, output):
+
         output = {
             "role": "assistant",
             "content": output,

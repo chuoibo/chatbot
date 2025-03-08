@@ -1,4 +1,3 @@
-import logging
 
 from src.utils.logger import logging
 from src.modules.history.model import Conversation
@@ -37,12 +36,9 @@ def main():
             message=prompt
         )
 
-        logging.info(f"Conversation_id: {conversation_id}")
-
         conversation_messages = manage_conversation.get_conversation_messages(
             conversation_id=conversation_id
         )
-        logging.info(f'Conversation messages: {conversation_messages}')
 
         history = conversation_messages[-5:-1]
 
@@ -50,8 +46,6 @@ def main():
             history=history,
             messages=prompt
         )
-
-        logging.info(f'Guard Agent Response: {guard_agent_response["content"]}')
         
         if guard_agent_response['memory']['guard_decision'] == 'not_allowed':
             continue
@@ -61,14 +55,19 @@ def main():
             messages=prompt
             )
         
-        if classification_agent_response['memory'] != '':
+        logging.info('----------------------------------- before')
+
+        if classification_agent_response['content'] != '':
             response = classification_agent_response
+        
         
         else:
             decisions = classification_agent_response["memory"]["classification_agent"]
             for decision in decisions:
                 first_key = next(iter(decision))  
-             
+                
+                logging.info(f'----------------------------------- {first_key}')
+
                 if first_key == "not_vague" and decision[first_key] == "yes":
                     logging.info(f"Emotion: {decision['detailed']['emotion']}, Next Move: {decision['detailed']['next_move']}")
                     emotion = decision['detailed']['emotion']

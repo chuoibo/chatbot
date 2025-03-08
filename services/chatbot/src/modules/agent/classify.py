@@ -16,14 +16,17 @@ class ClassificationAgent:
 
 
     def postprocess(self, output):
-        output = json.loads(output)
+        if isinstance(output, dict):
+            parsed_output = output
+        else:
+            parsed_output = json.loads(output)
 
         dict_output = {
             "role": "assistant",
-            "content": output['message'],
+            "content": parsed_output['message'],
             "memory": {
                 "agent": "classification_agent",
-                "classification_agent": output['decision']
+                "classification_agent": parsed_output['decision'],
             }
         }
 
@@ -50,7 +53,7 @@ class ClassificationAgent:
             - Happy: Use an enthusiastic follow-up question like, "Wait, really? I’m so glad! Can you tell me more about that?"
             - Neutral: Use a general follow-up question like, "Can you share more about that?"
             
-            Be more flexible with the follow-up questions generation
+            Be more flexible with the follow-up questions generation. If you have already asked the similar follow-up questions in the chat history, try to ask another question with a rephrase version
 
             If the message is not vague:
             1. Sad: If the user's message expresses sadness, frustration, fear, or distress, determine the best way to support them:
@@ -62,8 +65,7 @@ class ClassificationAgent:
             3. Response Format (Strict JSON)
             
             ---
-            Response Format (Strict JSON)
-            Your output must be a structured JSON object with the following format. The decision key will contain a list of two dictionaries: one for the case where the message is vague, and one for the case where it is not. Ensure that the "vague" and "not_vague" key is set to "yes" in one dictionary and "no" in the other, based on your analysis:
+            Follow the JSON format strictly and do not add ```json in your response. The decision key will contain a list of two dictionaries: one for the case where the message is vague, and one for the case where it is not. Ensure that the "vague" and "not_vague" key is set to "yes" in one dictionary and "no" in the other, based on your analysis:
                 
                 {{
                     "chain of thought": "Analyze the user's message step by step. Determine if it is vague or not. If vague, classify the emotion and suggest a follow-up question. If not vague, classify the emotion and decide the next move (e.g., deep_talk, story, or chitchat). Explain why the input belongs to that category.",

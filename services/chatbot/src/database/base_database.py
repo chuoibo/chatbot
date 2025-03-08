@@ -2,11 +2,9 @@ import pymongo
 # import logging
 from src.utils.logger import logging
 
-
 import pymongo.errors
 
 from src.config.app_config import Config as cfg
-
 
 class BaseDatabase(object):
     def __init__(self, config):
